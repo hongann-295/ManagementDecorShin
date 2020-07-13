@@ -1,0 +1,106 @@
+﻿@model HomeIndexViewModel
+@{
+    ViewBag.Title = Model.TitleName;
+    var categories = ViewBag.Categories;
+}
+@*<style>
+    .card-img-top {
+        width: 100%;
+        height: 15vw;
+        object-fit: cover;
+    }
+</style>*@
+
+<div class="container">
+    <div style="display: flex">
+        <div style="flex-shrink: 0">
+            <div class="card cardseatch" style="height:130px;margin:0px">
+                <h5 class="card-header">Search</h5>
+                <div class="card-body">
+                    <div class="input-group">
+                        <input id="myInput" type="text" class="form-control" placeholder="Search for...">
+                    </div>
+                </div>
+            </div>
+            <div style="margin:0px;height:300px">
+                <h5 class="card-header">Categories</h5>
+                <div class="list-group">
+                    @if (categories != null)
+                    {
+                        foreach (Category cate in categories)
+                        {
+                            <a asp-controller="Home" asp-action="Products" asp-route-id="@cate.CategoryId" style="text-decoration: none" class="list-group-item">@cate.CategoryName</a>
+
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+        <div style="flex-grow: 1; margin-right: 2rem">
+            <h1 class="my-4">
+            </h1>
+            <h5>Try looking through something beautiful looking for your room!</h5>
+
+
+            <div class="col-md-12">
+                <div id="search" style="width: 100%">
+                    @*<div class="row text-center">
+                    @foreach (var product in Model.products)
+                    {
+                        var avatarPath = $"/images/{product.ProductImage ?? "rsz_img_e1726.jpg"}";
+                    <div class="col-lg-5 mb-5 ">
+                        <div class="card">
+                            <div class="card-body">
+                                <h3 class="card-title">@product.ProductName</h3>
+                                <img src=@avatarPath class="card-img-top " />
+
+                                <p class="card-text">@product.Description</p>
+                                <a asp-controller="Home" asp-action="Detail" asp-route-id="@product.ProductId" class="btn btn-primary">Read More &rarr;</a>
+                            </div>
+                        </div>
+                    </div>
+                    }
+                </div>*@
+                    <div class="row">
+                        @foreach (var product in Model.products)
+                        {
+                            var avatarPath = $"/images/{product.ProductImage ?? "rsz_img_e1726.jpg"}";
+                            <div class="col-sm-4">
+                                <div class="card" style="margin: 0">
+                                    <div class="img">
+                                        <img src=@avatarPath class="card-img-top " />
+                                    </div>
+                                    <div class="top-text">
+                                        <div class="name">@product.ProductName</div>
+                                        <p>@product.Price</p>
+                                    </div>
+                                    <div class="bottom-text">
+                                        <div class="text">@product.Description</div>
+                                        <div class="btn">
+
+                                            <a asp-controller="Home" asp-action="Detail" asp-route-id="@product.ProductId">Read more</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $("#myInput").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#search div").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+}

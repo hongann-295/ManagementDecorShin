@@ -1,0 +1,168 @@
+﻿@inject SignInManager<ApplicationUser> signInManager
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+    @*<link rel="stylesheet" href="~/css/blog-home.css" />*@
+    <link rel="stylesheet" href="~/css/homeindex.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .card-img-top {
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    @*   <div class="wrapper">
+        <nav class="navbar fixed-top">
+            <ul>
+                <img src="~/images/shinava.jpg" style="width:50px;" class="mb-2" />
+            </ul>
+
+            <ul>
+                <li><a class="active" href="#">Home</a></li>
+                <li><a href="#1">About</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>*@
+    @*<div class="center">
+            <h1>Welcome To Shin Decor</h1>
+            <h2>Discover Now</h2>
+            <div class="buttons">
+                <button class="btn">Discover Now</button>
+                <button class="btn">Order Now</button>
+            </div>
+        </div>*@
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color:#dcdde1">
+        <div class="container">
+            <a class="navbar-brand" asp-controller="Home" asp-action="Index">
+                <img src="~/images/shinava.jpg" alt="Logo" class="rounded-circle" style="width:40px;">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainMenu">
+                <ul class="navbar-nav">
+                    @if (signInManager.IsSignedIn(User))
+                    {
+                        if (User.IsInRole("System Admin") || User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item">
+                                <a asp-controller="Home" asp-action="Index" class="nav-link">Home Shin</a>
+                            </li>
+                            <li class="nav-item">
+                                <a asp-controller="Home" asp-action="Dashboard" class="nav-link">Management</a>
+                            </li>
+                        }
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <a asp-controller="Home" asp-action="Index" class="nav-link">Home Shin</a>
+                        </li>
+                    }
+                </ul>
+                <ul class="navbar-nav ml-auto">
+                    @if (signInManager.IsSignedIn(User))
+                    {
+                        <li>
+                            <form asp-controller="Account" asp-action="Logout" method="post">
+                                <button type="submit" class="btn btn-link text-dark" style="width:auto; background-color:none">
+                                    Logout @User.Identity.Name
+                                </button>
+                            </form>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <a asp-controller="Account" asp-action="Register" class="nav-link">Register</a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-controller="Account" asp-action="Login" class="nav-link">Login</a>
+                        </li>
+                    }
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div id="demo" class="carousel slide mt-1" data-ride="carousel">
+
+        <ul class="carousel-indicators">
+            <li data-target="#demo" data-slide-to="0" class="active"></li>
+            <li data-target="#demo" data-slide-to="1"></li>
+            <li data-target="#demo" data-slide-to="2"></li>
+        </ul>
+
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="~/images/bianew2.jpg" alt="Los Angeles" style="height:605px;width:100%">
+                <div class="carousel-caption">
+                    <h3>Welcome to Shin</h3>
+                    <p>Try looking through something beautiful looking for your room!</p>
+                    <div class="buttons">
+                        <a href="#an">Discover Now</a>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="~/images/bia20.jpg" alt="Chicago" style="height:605px;width:100%">
+                <div class="carousel-caption">
+                    <h3>Welcome to Shin</h3>
+                    <p>Try looking through something beautiful looking for your room!</p>
+                    <div class="buttons">
+                        <a href="#an">Discover Now</a>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="~/images/bia21.jpg" alt="New York" style="height:605px;width:100%">
+                <div class="carousel-caption">
+                    <h3>Welcome to Shin</h3>
+                    <p>Try looking through something beautiful looking for your room!!</p>
+                    <div class="buttons">
+                        <a href="#an">Discover Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Page Content -->
+    @*<div class="overflow-hidden">
+            <img src="~/images/back55.jpg" style="width:100%;height:1000px" />
+        </div>*@
+    <div class="mt-2">
+        <main id="an" role="main">
+            @RenderBody()
+        </main>
+    </div>
+    <!-- /.container -->
+    <!-- Footer -->
+@*     <footer class="border-top card-footer text-muted" style="background-color: #f7f1e3">
+            <span>&copy;Anannnnnnnnnnnnn @DateTime.Now.Year</span>
+        </footer>*@
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validate/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script>
+        $("#menu-toggle").click(function (e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });
+    </script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,63 @@
+﻿body{
+    margin:0;
+    padding:0;
+    background: url('../images/daisy.jpg');
+    background-size:cover;
+    background-attachment:fixed;
+}
+
+#LoginForm {
+    width: 410px;
+    height: 410px;
+    background: #ffffff;
+    border-radius: 50px 0px 50px 0px;
+    margin: auto;
+    margin-top: 150px;
+    border-top: 4px solid #F8EFBA;
+    padding: 30px;
+}
+
+    #LoginForm h6 {
+        margin: 0;
+        color: #ffa502;
+        font-size: 20px;
+        text-align: center;
+        height: 40px;
+        border-bottom: 1px solid;
+        margin-bottom: 30px;
+    }
+
+#txtl {
+    width: 100%;
+    color: white;
+    border: 2px solid #F8EFBA;
+    border-radius: 20px 0px 20px 0px;
+    background: #212121;
+    font-size: 14px;
+    padding: 14px 10px;
+    font-weight: bold;
+    margin-bottom: 16px;
+}
+
+#Button1 {
+    border: none;
+    width: 70%;
+    height: 44px;
+    background: #ffa502;
+    border-radius: 60px 60px 60px 60px;
+    color: wheat;
+    font-weight: bold;
+    margin-left:50px;
+    margin-bottom: 25px;
+}
+
+#LoginForm a {
+    text-decoration: none;
+    color: #ffa502;
+    font-family: Arial;
+    font-size: 15px;
+}
+
+a:hover{
+    text-decoration:underline;
+}

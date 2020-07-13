@@ -1,0 +1,18 @@
+﻿@{
+    ViewBag.Title = "Access Denied";
+    Layout = "_LayoutCreate";
+}
+
+<div class="alert alert-danger mt-2">
+    <h1>
+        @ViewBag.Title
+    </h1>
+    <hr />
+    <h5>
+        You  do not  have permission to see this resource
+    </h5>
+</div>
+
+<a asp-controller="Home" asp-action="Index" class="btn btn-outline-danger">
+    Click here to navigate home page
+</a>

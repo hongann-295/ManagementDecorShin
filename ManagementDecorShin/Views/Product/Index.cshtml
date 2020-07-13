@@ -1,0 +1,57 @@
+﻿@model HomeIndexViewModel
+@{
+    ViewBag.Title = "Product management";
+    Layout = "_LayoutDashboard";
+    var cts = ViewBag.Categoriess as List<Category>;
+}
+
+<div>
+    <a asp-controller="Product" asp-action="Create" class="btn btn-outline-primary" style="width:auto">Create product</a>
+
+    <table class="table table-striped table-hover mt-2">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Product Name</th>
+                <th>Product Image</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Count</th>
+                <th>Description</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.products.Any())
+            {
+
+                foreach (var prd in Model.products)
+                {
+                    var avatarPath = $"/images/{prd.ProductImage ?? "rsz_img_e1726.jpg"}";
+                    <tr>
+                        <td>@prd.ProductId</td>
+                        <td>@prd.ProductName</td>
+                        <td><img src=@avatarPath class="card-img-top myImage" style="width:150px;height:150px" /></td>
+                        @foreach (var ct in cts)
+                        {
+                            if (ct.CategoryId == prd.CategoriesCategoryId)
+                            {
+                                <td>
+                                    @ct.CategoryName
+                                </td>
+                            }
+
+                        }
+                        <td>@prd.Price</td>
+                        <td>@prd.Count</td>
+                        <td>@prd.Description</td>
+                        <td>
+                            <a asp-controller="Product" asp-action="Edit" asp-route-id="@prd.ProductId" class="btn btn-outline-primary">Edit</a>
+                            <a asp-controller="Product" asp-action="Delete" asp-route-id="@prd.ProductId" class="btn btn-outline-danger">Delete</a>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,203 @@
+﻿*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins', sans-serif;
+}
+.contaiter{
+    /*display:flex;*/
+    align-items:center;
+    justify-content:space-between;
+}
+
+.card {
+    margin: 0 0 0 0 !important;
+    max-width: auto !important;
+    height: 320px;
+    background: white;
+    transition: 0.4s;
+    padding: 0 0px;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+}
+
+    .card:hover {
+        height: 470px;
+        box-shadow: 5px 5px 10px rgba(0,0,0,0.2);
+    }
+
+    .card .img {
+        height: 200px;
+    }
+
+    .card img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+    }
+body {
+    height:100%;
+    display:grid;
+    justify-items:center;
+    background:url('../images/back10.jpg')no-repeat;
+    background-size:cover;
+    background-attachment:fixed;
+    text-align:center;
+}
+
+.card .top-text{
+    padding:5px;
+}
+
+.card .top-text .name{
+    font-size:25px;
+    font-weight:600;
+    color:#202020;
+}
+
+.card .top-text p{
+    font-size:20px;
+    font-weight:600;
+    color:#e74c3c;
+    line-height:20px;
+}
+
+.card .bottom-text{
+    padding:0 20px 10px 20px;
+    margin-top:5px;
+    background:white;
+    opacity:0;
+    visibility:hidden;
+    transition:0.1s;
+}
+
+.card:hover .bottom-text {
+    opacity: 1;
+    visibility: visible;
+}
+
+.bottom-text .text {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.card .bottom-text .btn{
+    margin:10px 0;
+    text-align: left;
+}
+
+    .card .bottom-text .btn a {
+        text-decoration: none;
+        background: #e74c3c;
+        color:#f2f2f2;
+        padding:5px 8px;
+        border-radius:3px;
+        display:inline-flex;
+        transition:0.2s;
+    }
+
+    .card .bottom-text .btn a:hover{
+        transform: scale(0.9);
+    }
+
+@media screen and (max-width:978px){
+    .contaiter{
+        flex-wrap:wrap;
+        flex-direction:column;
+    }
+
+    .card{
+        margin: 2px 0;
+    }
+}
+
+.wrapper {
+    background: url(../images/back10.jpg) no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    height: 100%;
+}
+
+
+.logo{
+    width:100px;
+    height:auto;
+    padding:5px 20px;
+
+}
+
+
+.wrapper .center{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%, -50%);
+    font-family:sans-serif;
+    user-select:none;
+}
+
+.center h1{
+    color:white;
+    font-size:70px;
+    font-weight:bold;
+    width:900px;
+    text-align:center;
+}
+
+.center h2 {
+    color: white;
+    font-size: 70px;
+    font-weight: bold;
+    width: 885px;
+    margin-top:10px;
+    text-align: center;
+}
+
+.center .buttons{
+    margin:35px 280px;
+}
+
+.buttons button {
+    height: 100px;
+    width: 170px;
+    font-size: 15px;
+    font-weight: bold;
+    color: #ffb3b3;
+    background: #f1f2f6;
+    border: 1px solid #cc0000;
+    outline: none;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.buttons a {
+    height: 100px;
+    width: 170px;
+    font-size: 15px;
+  /*  font-weight: bold;*/
+    color: #ffb3b3;
+    background: #f1f2f6;
+    border: 1px solid #cc0000;
+    outline: none;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+
+.buttons a:hover {
+    background: #cc0000;
+}
+
+
+
+.buttons button:hover{
+    background:#cc0000;
+
+}
+
+.cardsearch{
+    background:rgba(0,0,0,0.4);
+}
+
+

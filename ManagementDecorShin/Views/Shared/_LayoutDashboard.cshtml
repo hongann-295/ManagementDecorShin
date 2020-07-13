@@ -1,0 +1,104 @@
+﻿@inject SignInManager<ApplicationUser> signInManager
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>@ViewBag.Title</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+
+    <!-- Custom styles for this template -->
+    <link href="~/css/simple-sidebar.css" rel="stylesheet" />
+
+</head>
+
+<body>
+
+    <div class="d-flex" id="wrapper">
+        <!-- Sidebar -->
+        <div class="bg-light border-right" id="sidebar-wrapper">
+            
+            <div class="sidebar-heading">
+                <a class="navbar-brand"asp-controller="Home" asp-action="Index">
+                    <img src="~/images/shinava.jpg" alt="Logo" class="rounded-circle" style="width:40px;">
+                </a>Shin Decor
+            </div>
+            <div class="list-group list-group-flush">
+                @if (signInManager.IsSignedIn(User))
+                {
+                    <a asp-controller="Home" asp-action="Dashboard" class="list-group-item list-group-item-action bg-light">Dashboard</a>
+                    <a asp-controller="Product" asp-action="Index" class="list-group-item list-group-item-action bg-light">Product</a>
+                    <a asp-controller="Categories" asp-action="Index" class="list-group-item list-group-item-action bg-light">Categories</a>
+                    if(User.IsInRole("System Admin"))
+                    {
+                        <a asp-controller="Role" asp-action="Index" class="list-group-item list-group-item-action bg-light">Role</a>
+                        <a asp-controller="User" asp-action="Index" class="list-group-item list-group-item-action bg-light">User</a>
+                    }
+                }
+                
+            </div>
+        </div>
+        <!-- /#sidebar-wrapper -->
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container">
+                    <button class="btn btn-primary" id="menu-toggle">Toggle Menu</button>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="mainMenu">
+                        <ul class="navbar-nav ml-auto">
+                            @if (signInManager.IsSignedIn(User))
+                            {
+                <li>
+                    <form asp-controller="Account" asp-action="Logout" method="post">
+                        <button type="submit" class="btn btn-link text-dark" style="width:auto; background-color:none">
+                            Logout @User.Identity.Name
+                        </button>
+                    </form>
+                </li> }
+                            else
+                            {
+                <li class="nav-item">
+                    <a asp-controller="Account" asp-action="Login" class="nav-link">Login</a>
+                </li>}
+
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            <div class="container-fluid">
+                @RenderBody()
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+    <!-- Bootstrap core JavaScript -->
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validate/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Menu Toggle Script -->
+    <script>
+        $("#menu-toggle").click(function (e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });
+    </script>
+    @RenderSection("Scripts", required: false)
+</body>
+
+</html>
